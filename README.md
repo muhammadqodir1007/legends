@@ -1,34 +1,44 @@
-# Spring Boot 3.0 Security with JWT Implementation
-This project demonstrates the implementation of security using Spring Boot 3.0 and JSON Web Tokens (JWT). It includes the following features:
+# Legend Warehouse Project
+
+This is the Legend Warehouse project, a robust and scalable warehouse management system built with Spring Boot.
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+    - [Clone the Repository](#clone-the-repository)
+    - [Build and Run](#build-and-run)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Introduction
+
+Legend Warehouse is a Spring Boot-based application designed to manage and optimize warehouse operations. It provides a reliable and efficient system for tracking inventory, processing orders, and managing overall warehouse logistics.
 
 ## Features
-* User registration and login with JWT authentication
-* Password encryption using BCrypt
-* Role-based authorization with Spring Security
-* Customized access denied handling
-* Logout mechanism
-* Refresh token
 
-## Technologies
-* Spring Boot 3.0
-* Spring Security
-* JSON Web Tokens (JWT)
-* BCrypt
-* Maven
- 
+- **Inventory Management:** Keep track of stock levels, product details, and warehouse locations.
+- **Order Processing:** Efficiently process incoming orders and manage order fulfillment.
+- **User Authentication:** Secure user authentication and authorization for different roles.
+- **Reports and Analytics:** Generate reports for inventory, sales, and other key metrics.
+- **RESTful API:** Well-designed API endpoints for seamless integration with other systems.
+
+## Prerequisites
+
+Make sure you have the following installed before running the application:
+
+- Java Development Kit (JDK)
+- Apache Maven
+- Git
+- Database (e.g., MySQL, PostgreSQL)
+
 ## Getting Started
-To get started with this project, you will need to have the following installed on your local machine:
 
-* JDK 17+
-* Maven 3+
+### Clone the Repository
 
+```bash
+git clone https://github.com/your-username/legend-warehouse.git
 
-To build and run the project, follow these steps:
-
-* Clone the repository: `git clone https://github.com/ali-bouali/spring-boot-3-jwt-security.git`
-* Navigate to the project directory: cd spring-boot-security-jwt
-* Add database "jwt_security" to postgres 
-* Build the project: mvn clean install
-* Run the project: mvn spring-boot:run 
-
--> The application will be available at http://localhost:8080.
