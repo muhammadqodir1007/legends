@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/material-categories")
+@RequestMapping("/api/v1/material-categories")
 @AllArgsConstructor
 @Slf4j
 public class MatCatController {

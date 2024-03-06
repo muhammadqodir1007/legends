@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/home")
+@RequestMapping("/api/v1/home")
 public class HomeController {
     HomeService homeService;
 

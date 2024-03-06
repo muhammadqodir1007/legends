@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/material-transactions")
+@RequestMapping("/api/v1/material-transactions")
 @AllArgsConstructor
 @Slf4j
 public class MaterialTransactionController {

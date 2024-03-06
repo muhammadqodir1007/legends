@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/item-types")
+@RequestMapping("/api/v1/item-types")
 @RequiredArgsConstructor
 @Slf4j
 public class ItemTypeController {
