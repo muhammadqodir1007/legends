@@ -33,7 +33,7 @@ Make sure you have the following installed before running the application:
 - Java Development Kit (JDK)
 - Apache Maven
 - Git
-- Database (e.g., MySQL, PostgreSQL)
+- Database (e.g., PostgreSQL)
 
 ## Getting Started
 
