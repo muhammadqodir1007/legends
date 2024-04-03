@@ -25,7 +25,7 @@ public class SecurityConfiguration {
 
 
     private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**", "v3/api-docs/**",
-            "/swagger-ui/**"};
+            "swagger-ui/**"};
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
@@ -38,7 +38,7 @@ public class SecurityConfiguration {
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(false);
-        configuration.setMaxAge(3600L); // 1 hour
+        configuration.setMaxAge(3600L);
 
         http.cors(httpSecurityCorsConfigurer ->
                         httpSecurityCorsConfigurer.configurationSource(request ->
