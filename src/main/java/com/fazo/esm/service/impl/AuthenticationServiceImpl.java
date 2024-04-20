@@ -1,16 +1,18 @@
 package com.fazo.esm.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fazo.esm.entity.Token;
+import com.fazo.esm.entity.TokenType;
+import com.fazo.esm.entity.User;
+import com.fazo.esm.exception.RestException;
 import com.fazo.esm.payload.AuthenticationRequest;
 import com.fazo.esm.payload.AuthenticationResponse;
 import com.fazo.esm.payload.RegisterRequest;
-import com.fazo.esm.entity.User;
-import com.fazo.esm.exception.RestException;
+import com.fazo.esm.repository.TokenRepository;
 import com.fazo.esm.repository.UserRepository;
 import com.fazo.esm.service.AuthenticationService;
-import com.fazo.esm.entity.Token;
-import com.fazo.esm.repository.TokenRepository;
-import com.fazo.esm.entity.TokenType;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,8 +20,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Service
@@ -44,6 +44,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
         return AuthenticationResponse.builder()
+                .id(user.getId())
+                .role(user.getRole().name())
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
@@ -64,6 +66,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
         return AuthenticationResponse.builder()
+                .id(user.getId())
+                .role(user.getRole().name())
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
