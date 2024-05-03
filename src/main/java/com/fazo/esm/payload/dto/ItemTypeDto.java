@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class ItemTypeDto {
     private String name;
+    private int categoryId;
 }

@@ -1,7 +1,9 @@
 package com.fazo.esm.service.impl;
 
+import com.fazo.esm.entity.Category;
 import com.fazo.esm.entity.ItemType;
 import com.fazo.esm.payload.dto.ItemTypeDto;
+import com.fazo.esm.repository.CategoryRepository;
 import com.fazo.esm.repository.ItemTypeRepository;
 import com.fazo.esm.service.ItemTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,12 @@ import java.util.List;
 public class ItemTypeServiceImpl implements ItemTypeService {
 
     private final ItemTypeRepository itemTypeRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public ItemTypeServiceImpl(ItemTypeRepository itemTypeRepository) {
+    public ItemTypeServiceImpl(ItemTypeRepository itemTypeRepository, CategoryRepository categoryRepository) {
         this.itemTypeRepository = itemTypeRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -33,6 +37,8 @@ public class ItemTypeServiceImpl implements ItemTypeService {
     public ItemType createItemType(ItemTypeDto itemTypeDto) {
         ItemType itemType = new ItemType();
         itemType.setName(itemTypeDto.getName());
+        Category category = categoryRepository.findById(itemTypeDto.getCategoryId()).orElseThrow(NullPointerException::new);
+        itemType.setCategory(category);
         return itemTypeRepository.save(itemType);
     }
 

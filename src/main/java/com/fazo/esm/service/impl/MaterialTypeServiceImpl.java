@@ -1,9 +1,11 @@
 package com.fazo.esm.service.impl;
 
+import com.fazo.esm.entity.MaterialCategory;
 import com.fazo.esm.entity.MaterialType;
 import com.fazo.esm.exception.RestException;
-import com.fazo.esm.payload.response.ApiResponse;
 import com.fazo.esm.payload.dto.MaterialTypeDto;
+import com.fazo.esm.payload.response.ApiResponse;
+import com.fazo.esm.repository.MaterialCategoryRepository;
 import com.fazo.esm.repository.MaterialTypeRepository;
 import com.fazo.esm.service.MaterialTypeService;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.List;
 public class MaterialTypeServiceImpl implements MaterialTypeService {
 
     private final MaterialTypeRepository materialTypeRepository;
+    private final MaterialCategoryRepository materialCategoryRepository;
 
     @Override
     public ApiResponse<List<MaterialType>> getAll() {
@@ -33,6 +36,8 @@ public class MaterialTypeServiceImpl implements MaterialTypeService {
     @Override
     public ApiResponse<MaterialType> create(MaterialTypeDto materialTypeDto) {
         MaterialType materialType = new MaterialType();
+        MaterialCategory materialCategory = materialCategoryRepository.findById(materialTypeDto.getMaterialCategoryId()).orElseThrow(NullPointerException::new);
+        materialType.setMaterialCategory(materialCategory);
         materialType.setName(materialTypeDto.getName());
         MaterialType savedType = materialTypeRepository.save(materialType);
         return ApiResponse.successResponse(savedType, "Material type created successfully");
