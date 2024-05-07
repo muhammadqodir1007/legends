@@ -8,6 +8,8 @@ import java.util.List;
 public interface ItemTypeService {
     List<ItemType> getAllItemTypes();
 
+    List<ItemType> getAllItemTypesByCategoryId(int categoryId);
+
     ItemType getItemTypeById(int id);
 
     ItemType createItemType(ItemTypeDto itemTypeDto);

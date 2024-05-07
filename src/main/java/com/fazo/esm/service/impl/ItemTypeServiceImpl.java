@@ -29,6 +29,13 @@ public class ItemTypeServiceImpl implements ItemTypeService {
     }
 
     @Override
+    public List<ItemType> getAllItemTypesByCategoryId(int categoryId) {
+
+        return itemTypeRepository.findAllByCategoryId(categoryId);
+
+    }
+
+    @Override
     public ItemType getItemTypeById(int id) {
         return itemTypeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Item type not found with id: " + id));
     }

@@ -34,6 +34,16 @@ public class MaterialTypeServiceImpl implements MaterialTypeService {
     }
 
     @Override
+    public ApiResponse<List<MaterialType>> getByCategoryId(int categoryId) {
+
+        List<MaterialType> byMaterialCategoryId = materialTypeRepository.findByMaterialCategoryId(categoryId);
+
+        return ApiResponse.successResponse(byMaterialCategoryId);
+
+
+    }
+
+    @Override
     public ApiResponse<MaterialType> create(MaterialTypeDto materialTypeDto) {
         MaterialType materialType = new MaterialType();
         MaterialCategory materialCategory = materialCategoryRepository.findById(materialTypeDto.getMaterialCategoryId()).orElseThrow(NullPointerException::new);

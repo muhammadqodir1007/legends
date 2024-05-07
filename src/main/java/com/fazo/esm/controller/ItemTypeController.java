@@ -1,8 +1,8 @@
 package com.fazo.esm.controller;
 
+import com.fazo.esm.entity.ItemType;
 import com.fazo.esm.payload.dto.ItemTypeDto;
 import com.fazo.esm.payload.response.ApiResponse;
-import com.fazo.esm.entity.ItemType;
 import com.fazo.esm.service.ItemTypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +24,18 @@ public class ItemTypeController {
         try {
             ApiResponse<List<ItemType>> response = ApiResponse.successResponse(itemTypeService.getAllItemTypes());
             log.info("Get all item types request successful");
+            return ResponseEntity.status(response.isSuccess() ? 200 : 400).body(response);
+        } catch (Exception e) {
+            log.error("Error while processing get all item types request", e);
+            throw e;
+        }
+    }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<ApiResponse<List<ItemType>>> getAllByCategoryId(@PathVariable int id) {
+        try {
+            ApiResponse<List<ItemType>> response = ApiResponse.successResponse(itemTypeService.getAllItemTypesByCategoryId(id));
+            log.info("Get all item types by category request successful");
             return ResponseEntity.status(response.isSuccess() ? 200 : 400).body(response);
         } catch (Exception e) {
             log.error("Error while processing get all item types request", e);

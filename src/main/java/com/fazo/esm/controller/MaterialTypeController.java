@@ -19,9 +19,16 @@ public class MaterialTypeController {
 
     private final MaterialTypeService materialTypeService;
 
+    @GetMapping("/category/{id}")
+    public ResponseEntity<ApiResponse<List<MaterialType>>> getAllByCategoryId(@PathVariable int id) {
+        log.info("Fetching all material types");
+        ApiResponse<List<MaterialType>> response = materialTypeService.getByCategoryId(id);
+        return ResponseEntity.status(response.isSuccess() ? 200 : 400).body(response);
+    }
+
     @GetMapping
     public ResponseEntity<ApiResponse<List<MaterialType>>> getAll() {
-        log.info("Fetching all material types");
+        log.info("Fetching all material types by category");
         ApiResponse<List<MaterialType>> response = materialTypeService.getAll();
         return ResponseEntity.status(response.isSuccess() ? 200 : 400).body(response);
     }
